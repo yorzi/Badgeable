@@ -26,7 +26,7 @@ module Badgeable
       def award_badge(*args)
         options = args.extract_options!
         name = args[0]
-        badge = Badge.find_or_create_by(name: name, options)
+        badge = Badge.find_badge(name, options)
         badgings.create(:badge_id => badge.id) unless has_badge?(badge)
       end
       
