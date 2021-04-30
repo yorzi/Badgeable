@@ -33,7 +33,8 @@ class Badging < ActiveRecord::Base
 end  
 
 class Badge < ActiveRecord::Base
-  def self.find_badge(name, options={})
+  def self.find_or_create_by(options)
+    name = options.dig(:name)
     Badge.where(:name => name).first || create(:name => name)
   end
   

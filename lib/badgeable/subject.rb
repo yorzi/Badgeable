@@ -5,7 +5,11 @@ module Badgeable
     def award_badge(*args)
       options = args.extract_options!
       name = args[0]
-      badge = Badge.find_badge(name, options)
+      if options.present?
+        badge = Badge.find_or_create_by(options.merge(name: name))
+      else
+        badge = Badge.find_or_create_by(name: name)
+      end
       
       badges << badge unless has_badge?(badge)      
     end
