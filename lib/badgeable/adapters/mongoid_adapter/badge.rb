@@ -9,7 +9,7 @@ class Badge
   
   before_create :assign_default_icon_name, :unless => lambda{icon}
   
-  def self.find_or_create_by_name(name, options)
+  def self.find_or_create_by(name: name, options)
     attrs = options.merge(:name => name)
     criteria.where(:name => name).first || create(attrs)
   end

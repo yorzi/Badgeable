@@ -33,7 +33,7 @@ class Badging < ActiveRecord::Base
 end  
 
 class Badge < ActiveRecord::Base
-  def self.find_or_create_by_name(name)
+  def self.find_or_create_by(name: name)
     Badge.where(:name => name).first || create(:name => name)
   end
   
